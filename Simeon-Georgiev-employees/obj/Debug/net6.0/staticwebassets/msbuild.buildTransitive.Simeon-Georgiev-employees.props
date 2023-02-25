@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Simeon-Georgiev-employees.props" />
+</Project>
