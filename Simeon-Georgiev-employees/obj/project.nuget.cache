@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "f9LIYbu/uBT2bZudA02JkGbwxaNZhsmoRR9oWOBbUye1QYvv4APlwZAczHbRq8BXY5bbNmtDuIgIZyxEMHS+rg==",
+  "dgSpecHash": "YoDDEiStx59SXAt/XGLFhN0iEYHz0F6s5wDuX23tmuDZeY39f7E6/xNryPEyE0nsLZcGibH38JPtDsQ20CsuBQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\press\\source\\repos\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees.csproj",
+  "projectFilePath": "D:\\SirmaTask\\Simoen-Georgiev-employees\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\press\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
   ],

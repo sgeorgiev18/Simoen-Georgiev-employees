@@ -5,13 +5,6 @@ namespace Simeon_Georgiev_employees.Services
 {
     public class CSVService : ICSVService
     {
-        private readonly IConfiguration _configuration;
-
-        public CSVService(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
         public OutputEmployees getResult(List<Row> rows)
         {
             List<int> ids = new List<int>();

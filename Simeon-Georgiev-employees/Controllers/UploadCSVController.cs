@@ -40,11 +40,28 @@ namespace Simeon_Georgiev_employees.Controllers
                 };
                 var textReader = new StreamReader(filePath);
                 using var csv = new CsvReader(textReader, configuration);
-                IEnumerable<Row> records = csv.GetRecords<Row>();
+                IEnumerable<RowDto> records = csv.GetRecords<RowDto>();
                 List<Row> rows = new List<Row>();
-                foreach(Row record in records)
+                foreach(RowDto record in records)
                 {
-                    rows.Add(record);
+                    
+                    DateOnly dateTo;
+                    try
+                    {
+                        dateTo = DateOnly.Parse(record.DateTo);
+                    }
+                    catch(Exception e) 
+                    {
+                        dateTo = DateOnly.FromDateTime(DateTime.Now);
+                    }
+                    Row row = new Row
+                    {
+                        EmpId = record.EmpId,
+                        ProjectId = record.ProjectId,
+                        DateTo= dateTo,
+                        DateFrom = record.DateFrom
+                    };
+                    rows.Add(row);
                 }
                 OutputEmployees output = csvService.getResult(rows);
                 return View(output);

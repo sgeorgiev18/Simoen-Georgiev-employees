@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\press\\source\\repos\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees.csproj": {}
+    "D:\\SirmaTask\\Simoen-Georgiev-employees\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees.csproj": {}
   },
   "projects": {
-    "C:\\Users\\press\\source\\repos\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees.csproj": {
+    "D:\\SirmaTask\\Simoen-Georgiev-employees\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\press\\source\\repos\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees.csproj",
+        "projectUniqueName": "D:\\SirmaTask\\Simoen-Georgiev-employees\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees.csproj",
         "projectName": "Simeon-Georgiev-employees",
-        "projectPath": "C:\\Users\\press\\source\\repos\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees.csproj",
+        "projectPath": "D:\\SirmaTask\\Simoen-Georgiev-employees\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees.csproj",
         "packagesPath": "C:\\Users\\press\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\press\\source\\repos\\Simeon-Georgiev-employees\\Simeon-Georgiev-employees\\obj\\",
+        "outputPath": "D:\\SirmaTask\\Simoen-Georgiev-employees\\Simeon-Georgiev-employees\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
