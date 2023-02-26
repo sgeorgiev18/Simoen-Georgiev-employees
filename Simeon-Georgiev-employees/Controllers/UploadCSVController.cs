@@ -26,6 +26,9 @@ namespace Simeon_Georgiev_employees.Controllers
         [HttpPost]
         public IActionResult Index(IFormFile postedFile)
         {
+            var formats = new[] { "MM-dd-yyyy", "dd-MM-yyyy", "yyyy-dd-MM", "yyyy-MM-dd", "dd-yyyy-MM", "MM-yyyy-dd",
+            "MM.dd.yyyy", "dd.MM.yyyy", "yyyy.dd.MM", "yyyy.MM.dd", "dd.yyyy.MM", "MM.yyyy.dd",
+            "MM/dd/yyyy", "dd/MM/yyyy", "yyyy/dd/MM", "yyyy/MM/dd", "dd/yyyy/MM", "MM/yyyy/dd"};
             if (postedFile != null)
             {
                 string filePath = Path.GetFullPath(postedFile.FileName);
@@ -48,7 +51,7 @@ namespace Simeon_Georgiev_employees.Controllers
                     DateOnly dateTo;
                     try
                     {
-                        dateTo = DateOnly.Parse(record.DateTo);
+                        dateTo = DateOnly.ParseExact(record.DateTo, formats);
                     }
                     catch(Exception e) 
                     {
@@ -58,8 +61,8 @@ namespace Simeon_Georgiev_employees.Controllers
                     {
                         EmpId = record.EmpId,
                         ProjectId = record.ProjectId,
-                        DateTo= dateTo,
-                        DateFrom = record.DateFrom
+                        DateTo = dateTo,
+                        DateFrom = DateOnly.ParseExact(record.DateFrom, formats)
                     };
                     rows.Add(row);
                 }

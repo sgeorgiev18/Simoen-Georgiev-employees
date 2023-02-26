@@ -9,6 +9,7 @@ namespace Simeon_Georgiev_employees.Services
         {
             List<int> ids = new List<int>();
 
+            //get number of unique employees and their ids
             foreach (var record in rows)
             {
                 if (!ids.Contains(record.EmpId))
@@ -16,6 +17,7 @@ namespace Simeon_Georgiev_employees.Services
                     ids.Add(record.EmpId);
                 }
             }
+            //create a list of every unique employee and map it to the others with common working days
             List<Employee> employees = new List<Employee>();
             foreach (int id in ids)
             {
@@ -30,6 +32,7 @@ namespace Simeon_Georgiev_employees.Services
                 e.EmpId = id;
                 employees.Add(e);
             }
+            //get number of unique projects and their ids
             List<int> projectIds = new List<int>();
             foreach (Row row in rows)
             {
@@ -38,12 +41,17 @@ namespace Simeon_Georgiev_employees.Services
                     projectIds.Add(row.ProjectId);
                 }
             }
+
+            //hold the rows of the current project which is being analyzed
             List<Row> currentProject = new List<Row>();
             List<Employee> employeesInProject = new List<Employee>();
+            //iterate through each project
             for (int i = 0; i < projectIds.Count; i++)
             {
+                //save rows of the current project
                 currentProject = rows.Where(x => x.ProjectId == projectIds[i]).ToList();
                 List<int> employeesInProjectIds = new List<int>();
+                //iterate through every row of the current project and find the employees who participated in it
                 foreach (var proj in currentProject)
                 {
                     if (!employeesInProjectIds.Contains(proj.EmpId))
@@ -52,6 +60,7 @@ namespace Simeon_Georgiev_employees.Services
                     }
                 }
 
+                //iterate through the ids of the employees who work on the current project and add them as objects(Employee) to a list
                 for (int j = 0; j < employeesInProjectIds.Count; j++)
                 {
                     bool contains = false;
@@ -68,6 +77,9 @@ namespace Simeon_Georgiev_employees.Services
                     }
                 }
 
+                //pass to the calculateDays function list of employees who work in current porject and the rows of the current project.
+                //the function returns the same list but its dictionary values of the employees is updated - calculated each employee how much time
+                //worked with the other employees
                 List<Employee> result = new List<Employee>();
                 result = calculateDays(employeesInProject, currentProject);
                 foreach (var e in result)
@@ -75,6 +87,8 @@ namespace Simeon_Georgiev_employees.Services
                     employees.First(x => x.EmpId == e.EmpId).EmployeesWorkedWithRecords = e.EmployeesWorkedWithRecords;
                 }
             }
+
+            //get all unique employee ids in a list
             List<int> employeesIds = new List<int>();
             foreach (var employee in employees)
             {
@@ -83,11 +97,19 @@ namespace Simeon_Georgiev_employees.Services
                     employeesIds.Add(employee.EmpId);
                 }
             }
+
+            //pass to the maxDays function all the unique employees and their ids and find out one of the employee from the pair which has worked
+            //the most together in total
             Employee employeeMaxDays = maxDays(employees, employeesIds);
+            //find the number of days in total of the pair
             int value = colleagueMaxDays(employeeMaxDays, employeesIds);
+            //find the second employee's id from the pair
             int key = employeeMaxDays.EmployeesWorkedWithRecords.FirstOrDefault(x => x.Value == value).Key;
+            //filter from the projects only those in which the first employee has worked in
             List<Row> employee1Projects = rows.Where(x => x.EmpId == employeeMaxDays.EmpId).ToList();
+            //filter from the projects only those in which the second employee has worked in
             List<Row> employee2Projects = rows.Where(x => x.EmpId == key).ToList();
+            //find their common projects
             List<int> commonProjectsIds = new List<int>();
             foreach (var project in employee1Projects)
             {
@@ -102,9 +124,11 @@ namespace Simeon_Georgiev_employees.Services
                     }
                 }
             }
+            //create output object which will be passed as a VieModel
             OutputEmployees output = new OutputEmployees();
             output.EmployeeId1 = employeeMaxDays.EmpId;
             output.EmployeeId2 = key;
+            //find out how many days they worked on every project
             foreach (int id in commonProjectsIds)
             {
                 Row p1 = new Row();
@@ -171,14 +195,6 @@ namespace Simeon_Georgiev_employees.Services
         }
         public int DifferenceBetweenRangeOfDays(DateOnly from1, DateOnly from2, DateOnly to1, DateOnly to2)
         {
-            if (to1 == null)
-            {
-                to1 = DateOnly.FromDateTime(DateTime.Now);
-            }
-            if (to2 == null)
-            {
-                to2 = DateOnly.FromDateTime(DateTime.Now);
-            }
             DateOnly soonerFrom;
             DateOnly soonerTo;
             if (from1 > from2)

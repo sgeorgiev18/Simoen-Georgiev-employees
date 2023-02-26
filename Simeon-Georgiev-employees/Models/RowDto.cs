@@ -4,7 +4,7 @@
     {
         public int EmpId { get; set; }
         public int ProjectId { get; set; }
-        public DateOnly DateFrom { get; set; }
+        public String DateFrom { get; set; }
         public String DateTo { get; set; }
     }
 }
